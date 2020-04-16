@@ -16,7 +16,7 @@ $(".btn").click(function () {
 
 function nextSequence() {
 
-    var randomNumber = Math.floor(Math.random() * 4);
+    var randomNumber = Math.round(Math.random() * 3);
     var randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
 
