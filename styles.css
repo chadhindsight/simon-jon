@@ -122,6 +122,6 @@ body {
   background-color: grey;
 }
 p {
-  text-align: justify;
-  font-size: medium;
+  text-align: left;
+  font-size: large;
 }

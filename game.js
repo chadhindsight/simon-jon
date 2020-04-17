@@ -99,9 +99,16 @@ function startOver() {
     level = 0
     gamePattern = 0
 }
-
+// MODAL
+$("#close-button").click(()=>{
+    $(".modal").addClass('closed')
+    let yeah = new Audio('sounds/yeah-instrumental.mp3');
+    yeah.play()
+    yeah.volume = 0.12
+})
 // YEAH!
 // let jams = new Audio(`sounds/yeah-instrumental.mp3`)
 // jams.play();
 //  document.getElementsByTagName("audio").play()
 // alert('OKAY!')
+// MODAL STUFF
