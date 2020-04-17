@@ -10,7 +10,6 @@ let level = 0;
 // 7th iteration
 $(document).keypress(function () {
     if (!started) {
-
         //3. The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
         $("#level-title").text("Level " + level);
         nextSequence();
@@ -95,12 +94,12 @@ function animatePress(currentColor) {
 }
 // RESTART GAME
 function startOver() {
-    started = false
     level = 0
-    gamePattern = 0
+    gamePattern = []
+    started = false
 }
 // MODAL
-$("#close-button").click(()=>{
+$(".close-button").click(()=>{
     $(".modal").addClass('closed')
     let yeah = new Audio('sounds/yeah-instrumental.mp3');
     yeah.play()
