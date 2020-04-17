@@ -55,7 +55,7 @@ function checkAnswer(currentLevel) {
     //3. Write an if statement inside checkAnswer() to check if the most recent user answer is the same as the game pattern. If so then log "success", otherwise log "wrong".
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
 
-        console.log("success");
+        console.log(" user success");
         //4. If the user got the most recent answer right in step 3, then check that they have finished their sequence with another if statement.
         if (userClickedPattern.length === gamePattern.length) {
 
@@ -103,7 +103,7 @@ $(".close-button").click(()=>{
     $(".modal").addClass('closed')
     let yeah = new Audio('sounds/yeah-instrumental.mp3');
     yeah.play()
-    yeah.volume = 0.12
+    yeah.volume = 0.2
 })
 // YEAH!
 // let jams = new Audio(`sounds/yeah-instrumental.mp3`)
