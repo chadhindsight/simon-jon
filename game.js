@@ -26,19 +26,23 @@ $(".btn").click(function () {
     //When a user clicks on a button, the corresponding sound should be played.
     playSound(userChosenColor);
     animatePress(userChosenColor);
+    checkAnswer(userClickedPattern.length - 1);
 
 });
 
 function nextSequence() {
+    userClickedPattern = [];
+    level++;
+    $("#level-title").text("Level " + level);
 
-    var randomNumber = Math.round(Math.random() * 3);
-    var randomChosenColor = buttonColors[randomNumber];
+    let randomNumber = Math.round(Math.random() * 3);
+    let randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
 
     $("#" + randomChosenColor).fadeIn(100).fadeOut(100).fadeIn(100);
 
     //4. Refactor the code in playSound() so that it will work for both playing sound in nextSequence() and when the user clicks a button.
-    $('button').click(() => playSound(randomChosenColor));
+    playSound(randomChosenColor);
 }
 
 //2. Create a new function called playSound() that takes a single input parameter called name.
@@ -46,11 +50,41 @@ function playSound(name) {
     var audio = new Audio(`sounds/${name}.mp3`);
     audio.play();
 }
-// function animatePress(currentColor) {
-//     $(`#${currentColor}`).addClass("pressed")
-// }
-function animatePress(currentColor) {
 
+function checkAnswer(currentLevel) {
+
+    //3. Write an if statement inside checkAnswer() to check if the most recent user answer is the same as the game pattern. If so then log "success", otherwise log "wrong".
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+
+        console.log("success");
+        //4. If the user got the most recent answer right in step 3, then check that they have finished their sequence with another if statement.
+        if (userClickedPattern.length === gamePattern.length) {
+
+            //5. Call nextSequence() after a 1000 millisecond delay.
+            setTimeout(function () {
+                nextSequence();
+            }, 1000);
+
+        }
+
+    } else {
+        startOver()
+        console.log("wrong");
+        //1. In the sounds folder, there is a sound called wrong.mp3, play this sound if the user got one of the answers wrong.
+        playSound("wrong");
+
+        $("body").addClass("game-over");
+        setTimeout(function () {
+            $("body").removeClass("game-over");
+        }, 200);
+
+        //3. Change the h1 title to say "Game Over, Press Any Key to Restart" if the user got the answer wrong.
+        $("#level-title").text("Game Over, Press Any Key to Restart");
+    }
+
+}
+
+function animatePress(currentColor) {
     //2. Use jQuery to add this pressed class to the button that gets clicked inside animatePress().
     $(`#${currentColor}`).addClass("pressed");
 
@@ -59,8 +93,15 @@ function animatePress(currentColor) {
         $(`#${currentColor}`).removeClass("pressed");
     }, 100);
 }
+// RESTART GAME
+function startOver() {
+    started = false
+    level = 0
+    gamePattern = 0
+}
 
-
-
-
+// YEAH!
+// let jams = new Audio(`sounds/yeah-instrumental.mp3`)
+// jams.play();
+//  document.getElementsByTagName("audio").play()
 // alert('OKAY!')
